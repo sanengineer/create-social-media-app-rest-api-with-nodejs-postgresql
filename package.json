@@ -1,0 +1,53 @@
+{
+  "name": "rps-backend",
+  "version": "1.0.0",
+  "description": "rps(rock paper scissors) game backend dev",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/fsw-wave-2/rps-backend.git"
+  },
+  "keywords": [
+    "game",
+    "rock",
+    "paper",
+    "scissors",
+    "nodejs",
+    "postgresql"
+  ],
+  "author": "RPS Team Wave 2",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/fsw-wave-2/rps-backend/issues"
+  },
+  "homepage": "https://gitlab.com/fsw-wave-2/rps-backend#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "express-group-router": "^2.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "morgan": "~1.9.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0",
+    "swagger-ui-express": "^4.1.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "sequelize-cli": "^6.2.0"
+  }
+}

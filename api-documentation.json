@@ -1,0 +1,518 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Rock Paper Scissors - Backend API Documentation",
+    "contact": {}
+  },
+  "host": "kerbagungame.herokuapp.com",
+  "basePath": "/api/v1",
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "User Resgister",
+        "tags": ["User"],
+        "operationId": "UserResgister",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRegisterRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "User Login",
+        "tags": ["User"],
+        "operationId": "UserLogin",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserLoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/me": {
+      "get": {
+        "summary": "Get Who Am I From Token",
+        "tags": ["User"],
+        "operationId": "GetWhoAmIFromToken",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": { "200": { "description": "success" } }
+      }
+    },
+    "/user-public": {
+      "get": {
+        "summary": "Get Users Profile",
+        "tags": ["User"],
+        "operationId": "GetAllUsersProfile",
+        "parameters": [],
+        "responses": { "200": { "description": "success" } }
+      }
+    },
+    "/user-public/{user_id}": {
+      "get": {
+        "summary": "Get User Profile Public",
+        "tags": ["User"],
+        "operationId": "GetUserProfilePublic",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/user/{user_id}": {
+      "get": {
+        "summary": "Get User Profile",
+        "tags": ["User"],
+        "operationId": "GetUserProfile",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Profile",
+        "tags": ["User"],
+        "operationId": "UpdateProfile",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateProfileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      },
+      "/user-details": {
+        "get": {
+          "summary": "Get Users Details",
+          "tags": ["User"],
+          "operationId": "GetUsersDetails",
+          "parameters": [],
+          "responses": {
+            "200": { "description": "success" }
+          }
+        }
+      }
+    },
+    "/change_password/{user_id}": {
+      "put": {
+        "summary": "Change Password",
+        "tags": [
+          "User"
+        ],
+        "operationId": "ChangePassword",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ChangePasswordRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/history": {
+      "post": {
+        "summary": "Create History",
+        "tags": ["History"],
+        "operationId": "CreateHistory",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateHistoryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/score-summary/{user_id}": {
+      "get": {
+        "summary": "Get Score Summary With User ID",
+        "tags": ["History"],
+        "operationId": "GetScoreSummaryWithUserId",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/top-score/{game_id}": {
+      "get": {
+        "summary": "Get 3 Top Score  With Game ID",
+        "tags": ["History"],
+        "operationId": "GetTopScoreWithGameId",
+        "parameters": [
+          {
+            "name": "game_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/game": {
+      "get": {
+        "summary": "Get All Games, order by name",
+        "tags": ["Game"],
+        "operationId": "GetAllGames,orderbyname",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/game/{id}": {
+      "get": {
+        "summary": "Get Detail Games, with asset game",
+        "tags": ["Game"],
+        "operationId": "GetDetailGames,withassetgame",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Id of game"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/game_asset": {
+      "get": {
+        "summary": "Get All Game Asset",
+        "tags": ["Game"],
+        "operationId": "GetAllGameAsset",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/game_asset/{id}": {
+      "get": {
+        "summary": "Get Detail Game Asset",
+        "tags": ["Game"],
+        "operationId": "GetDetailGameAsset",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Id of game asset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserRegisterRequest": {
+      "title": "UserRegisterRequest",
+      "example": {
+        "username": "lewandowski",
+        "email": "lewandowski@yahoo.id",
+        "password": "mantandortmund"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": ["username", "email", "password"]
+    },
+    "UserLoginRequest": {
+      "title": "UserLoginRequest",
+      "example": {
+        "email": "lewandowski@yahoo.id",
+        "password": "mantandortmund"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": ["email", "password"]
+    },
+    "UpdateProfileRequest": {
+      "title": "UpdateProfileRequest",
+      "example": {
+        "username": "lewandowski",
+        "email": "lewandowski@yahuud.id",
+        "firstname": "Robert",
+        "lastname": "Lewandowski",
+        "birthdate": "1988-08-21",
+        "gender": "Male",
+        "address": "Polish",
+        "avatar": "https://upload.wikimedia.org/wikipedia/commons/c/c2/JAP-POL_%286%29_%28cropped%29_%28cropped%29.jpg"
+      },
+      "type": "object",
+      "properties": {
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "firstanme",
+        "lastname",
+        "birthdate",
+        "gender",
+        "address",
+        "avatar"
+      ]
+    },
+    "CreateHistoryRequest": {
+      "title": "CreateHistoryRequest",
+      "example": {
+        "user_id": "23",
+        "game_id": "1",
+        "high_score": "215"
+      },
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "high_score": {
+          "type": "string"
+        }
+      },
+      "required": ["user_id", "high_score"]
+    },
+    "UpdateHistory(highscore)Request": {
+      "title": "UpdateHistory(highscore)Request",
+      "example": {
+        "user_id": "23",
+        "high_score": "450"
+      },
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "high_score": {
+          "type": "string"
+        }
+      },
+      "required": ["user_id", "high_score"]
+    },
+    "ChangePasswordRequest": {
+      "title": "ChangePasswordRequest",
+      "example": {
+        "password": "buatlagi",
+        "confirm_password": "buatlagi"
+      },
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "confirm_password": {
+          "type": "string"
+        }
+      },
+      "required": ["password", "confirm_password"]
+    }
+  },
+  "tags": [
+    {
+      "name": "User"
+    },
+    {
+      "name": "History"
+    },
+    {
+      "name": "Game"
+    }
+  ]
+}

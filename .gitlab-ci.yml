@@ -1,0 +1,34 @@
+image: node:12.18.3
+
+
+services:
+  - postgres:latest
+
+variables:
+  POSTGRES_DB: database_production
+
+stages:
+  - build
+  - production
+  
+proses compile:
+  variables: 
+    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+  stage: build
+  script: 
+    - npm install
+
+production:
+  type: deploy
+  stage: production
+  image: ruby:latest
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
+
+  
+  only:
+    - master
+    - test-deploy
