@@ -1,4 +1,4 @@
-# RPS BACKEND API Boilerplate
+# SOSMET BACKEND API
 
 ## Overview
 
@@ -29,7 +29,7 @@ npm run dev
 ```
 
 ### API Documentation
-check on this [link](https://kerbagungame.herokuapp.com/api-docs)
+check on this [link](https://sosmetend.herokuapp.com/api-docs)
 
 ##### Deployment
 

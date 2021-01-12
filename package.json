@@ -1,5 +1,5 @@
 {
-  "name": "rps-backend",
+  "name": "sosmet-be",
   "version": "1.0.0",
   "description": "rps(rock paper scissors) game backend dev",
   "main": "app.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/fsw-wave-2/rps-backend.git"
+    "url": "git+https://gitlab.com/fsw-wave-2/sosmet-be.git"
   },
   "keywords": [
     "game",
@@ -23,9 +23,9 @@
   "author": "RPS Team Wave 2",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/fsw-wave-2/rps-backend/issues"
+    "url": "https://gitlab.com/fsw-wave-2/sosmet-be/issues"
   },
-  "homepage": "https://gitlab.com/fsw-wave-2/rps-backend#readme",
+  "homepage": "https://gitlab.com/fsw-wave-2/sosmet-be#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
