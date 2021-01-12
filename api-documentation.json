@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0",
-    "title": "Rock Paper Scissors - Backend API Documentation",
+    "title": "Sosmet - Backend API Documentation",
     "contact": {}
   },
-  "host": "kerbagungame.herokuapp.com",
+  "host": "sosmetend.herokuapp.com",
   "basePath": "/api/v1",
   "schemes": ["https"],
   "consumes": ["application/json"],
@@ -55,25 +55,8 @@
           }
         }
       }
-    },
-    "/me": {
-      "get": {
-        "summary": "Get Who Am I From Token",
-        "tags": ["User"],
-        "operationId": "GetWhoAmIFromToken",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          }
-        ],
-        "responses": { "200": { "description": "success" } }
-      }
-    },
-    "/user-public": {
+    },    
+    "/all-profiles": {
       "get": {
         "summary": "Get Users Profile",
         "tags": ["User"],
@@ -82,7 +65,7 @@
         "responses": { "200": { "description": "success" } }
       }
     },
-    "/user-public/{user_id}": {
+    "/profile/{user_id}": {
       "get": {
         "summary": "Get User Profile Public",
         "tags": ["User"],
@@ -104,9 +87,9 @@
     },
     "/user/{user_id}": {
       "get": {
-        "summary": "Get User Profile",
+        "summary": "Get User Private Profile",
         "tags": ["User"],
-        "operationId": "GetUserProfile",
+        "operationId": "GetUserProfilePrivate",
         "parameters": [
           {
             "name": "Authorization",
@@ -220,11 +203,11 @@
         "security": []
       }
     },
-    "/history": {
+    "/new-posts": {
       "post": {
-        "summary": "Create History",
-        "tags": ["History"],
-        "operationId": "CreateHistory",
+        "summary": "Create Post",
+        "tags": ["Post"],
+        "operationId": "CreatePost",
         "parameters": [
           {
             "name": "Authorization",
@@ -239,7 +222,7 @@
             "required": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/CreateHistoryRequest"
+              "$ref": "#/definitions/CreatePostRequest"
             }
           }
         ],
@@ -250,21 +233,14 @@
         }
       }
     },
-    "/score-summary/{user_id}": {
+    "/post/{post_id}": {
       "get": {
-        "summary": "Get Score Summary With User ID",
-        "tags": ["History"],
-        "operationId": "GetScoreSummaryWithUserId",
+        "summary": "Get Detail Post By Post ID",
+        "tags": ["Post"],
+        "operationId": "GetDetailPostByPostId",
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "user_id",
+            "name": "pos_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -278,14 +254,14 @@
         }
       }
     },
-    "/top-score/{game_id}": {
+    "/posts/{post_id}": {
       "get": {
-        "summary": "Get 3 Top Score  With Game ID",
-        "tags": ["History"],
-        "operationId": "GetTopScoreWithGameId",
+        "summary": "Get All Post By User ID",
+        "tags": ["Post"],
+        "operationId": "GetAllPostByUserID",
         "parameters": [
           {
-            "name": "game_id",
+            "name": "post_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -299,11 +275,11 @@
         }
       }
     },
-    "/game": {
+    "/posts": {
       "get": {
-        "summary": "Get All Games, order by name",
-        "tags": ["Game"],
-        "operationId": "GetAllGames,orderbyname",
+        "summary": "Get All Posts",
+        "tags": ["Post"],
+        "operationId": "GetAllPosts",
         "parameters": [],
         "responses": {
           "200": {
@@ -311,64 +287,7 @@
           }
         }
       }
-    },
-    "/game/{id}": {
-      "get": {
-        "summary": "Get Detail Games, with asset game",
-        "tags": ["Game"],
-        "operationId": "GetDetailGames,withassetgame",
-        "deprecated": false,
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "description": "Id of game"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success"
-          }
-        }
-      }
-    },
-    "/game_asset": {
-      "get": {
-        "summary": "Get All Game Asset",
-        "tags": ["Game"],
-        "operationId": "GetAllGameAsset",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "success"
-          }
-        }
-      }
-    },
-    "/game_asset/{id}": {
-      "get": {
-        "summary": "Get Detail Game Asset",
-        "tags": ["Game"],
-        "operationId": "GetDetailGameAsset",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "description": "Id of game asset"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success"
-          }
-        }
-      }
-    }
+    }    
   },
   "definitions": {
     "UserRegisterRequest": {
@@ -451,41 +370,27 @@
         "avatar"
       ]
     },
-    "CreateHistoryRequest": {
-      "title": "CreateHistoryRequest",
+    "CreatePostRequest": {
+      "title": "CreatePostRequest",
       "example": {
         "user_id": "23",
-        "game_id": "1",
-        "high_score": "215"
+        "content": "1",
+        "image": "215"
       },
       "type": "object",
       "properties": {
         "user_id": {
           "type": "string"
         },
-        "high_score": {
-          "type": "string"
-        }
-      },
-      "required": ["user_id", "high_score"]
-    },
-    "UpdateHistory(highscore)Request": {
-      "title": "UpdateHistory(highscore)Request",
-      "example": {
-        "user_id": "23",
-        "high_score": "450"
-      },
-      "type": "object",
-      "properties": {
-        "user_id": {
+        "content": {
           "type": "string"
         },
-        "high_score": {
+        "image": {
           "type": "string"
         }
       },
-      "required": ["user_id", "high_score"]
-    },
+      "required": ["user_id", "content"]
+    },    
     "ChangePasswordRequest": {
       "title": "ChangePasswordRequest",
       "example": {
@@ -509,10 +414,7 @@
       "name": "User"
     },
     {
-      "name": "History"
-    },
-    {
-      "name": "Game"
+      "name": "Post"
     }
   ]
 }

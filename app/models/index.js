@@ -43,26 +43,37 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.user = require("./users")(sequelize, Sequelize);
-db.history = require("./histories")(sequelize, Sequelize);
-db.game = require("./games")(sequelize, Sequelize);
-db.game_asset = require("./game-assets")(sequelize, Sequelize);
+db.user = require("./user")(sequelize, Sequelize);
+db.post = require("./post")(sequelize, Sequelize);
+db.comment = require("./comment")(sequelize, Sequelize);
+db.love = require("./love")(sequelize, Sequelize);
 
-db.history.belongsTo(db.user, {
+db.post.belongsTo(db.user, {
   foreignKey: {
     name: "user_id",
   },
 });
 
-db.history.belongsTo(db.game, {
+db.comment.belongsTo(db.post, {
   foreignKey: {
-    name: "game_id",
+    name: "post_id",
+  },
+});
+db.comment.belongsTo(db.user, {
+  foreignKey: {
+    name: "user_id",
   },
 });
 
-db.game_asset.belongsTo(db.game, {
+db.love.belongsTo(db.post, {
   foreignKey: {
-    name: "game_id",
+    name: "post_id",
+  },
+});
+
+db.love.belongsTo(db.user, {
+  foreignKey: {
+    name: "user_id",
   },
 });
 

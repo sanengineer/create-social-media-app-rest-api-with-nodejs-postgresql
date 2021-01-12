@@ -6,7 +6,6 @@ var cors = require("cors");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var swaggerUI = require("swagger-ui-express");
-var swaggerFile = require("./api-documentation.json");
 
 var app = express();
 
@@ -19,6 +18,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 // swagger api documentation
+var swaggerFile = require("./api-documentation.json");
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
 // swagger api local documentation
