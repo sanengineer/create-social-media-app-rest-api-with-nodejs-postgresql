@@ -18,7 +18,7 @@ module.exports = (app) => {
   // show all users
   router.get("/all-profiles", controllerUser.getAllProfiles);
   // show detail profile
-  router.get("/public-user/:id", controllerUser.getProfile);
+  router.get("/profile/:id", controllerUser.getProfile);
   
   router.get("/posts", controllerPost.index);
   router.get("/post/:id", controllerPost.show);
