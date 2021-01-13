@@ -4,6 +4,7 @@ const controllerUser = require("../controllers/api/v1/UserControllers");
 const controllerPost = require("../controllers/api/v1/PostControllers");
 // middleware
 const middlewares = require("../middlewares/middlewares");
+const upload = require("../utils/multer");
 
 module.exports = (app) => {
   /**
@@ -13,18 +14,18 @@ module.exports = (app) => {
   router.post("/register", controllerUser.userRegister);
   // login
   router.post("/login", controllerUser.userLogin);
-  
+
   // Api route public
   // show all users
   router.get("/all-profiles", controllerUser.getAllProfiles);
   // show detail profile
   router.get("/public-user/:id", controllerUser.getProfile);
-  
+
   router.get("/posts", controllerPost.index);
   router.get("/post/:id", controllerPost.show);
   router.get("/posts/:id", controllerPost.getPostByUser);
 
-    /**
+  /**
    *   Route with middleware
    */
   router.group([middlewares.verifyToken], (router) => {
@@ -32,6 +33,11 @@ module.exports = (app) => {
     router.get("/user/:id", controllerUser.getProfilePrivate);
     // update profile
     router.put("/user/:id", controllerUser.updateProfile);
+    router.put(
+      "/user-profil-pict/:id",
+      upload.single("image"),
+      controllerUser.uploadProfilePict
+    );
     // create new post
     router.post("/new-post", controllerPost.create);
   });

@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -29,32 +27,36 @@ module.exports = (sequelize, DataTypes) => {
       const token = jwt.sign(payload, secretToken, { expiresIn: 86400 * 30 });
       return token;
     };
-  };
-  user.init({
-    user_id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
+  }
+  user.init(
+    {
+      user_id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      username: DataTypes.STRING,
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
+      firstname: DataTypes.STRING,
+      lastname: DataTypes.STRING,
+      birthdate: {
+        type: DataTypes.DATEONLY,
+        get: function () {
+          return moment(this.getDataValue("birthdate")).format("DD-MM-YYYY");
+        },
+      },
+      gender: DataTypes.STRING,
+      address: DataTypes.TEXT,
+      avatar: DataTypes.STRING,
+      cloudinary_id: DataTypes.STRING,
     },
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    firstname: DataTypes.STRING,
-    lastname: DataTypes.STRING,
-    birthdate: {
-      type: DataTypes.DATEONLY,
-      get: function() {
-        return moment(this.getDataValue('birthdate')).format('DD-MM-YYYY')
-      }
-    },
-    gender: DataTypes.STRING,
-    address: DataTypes.TEXT,
-    avatar: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'user',
-  });
+    {
+      sequelize,
+      modelName: "user",
+    }
+  );
 
   //encrypt password
   user.beforeSave((user, options) => {
@@ -78,18 +80,18 @@ module.exports = (sequelize, DataTypes) => {
   };
   user.associate = function (models) {
     user.hasMany(models.post, {
-      foreignKey: {field : "user_id"},
-      as: "UserIdPost"
+      foreignKey: { field: "user_id" },
+      as: "UserIdPost",
     });
     user.hasMany(models.comment, {
-      foreignKey: {field : "user_id"},
-      as: "UserIdCom"
+      foreignKey: { field: "user_id" },
+      as: "UserIdCom",
     });
     user.hasMany(models.love, {
-      foreignKey: {field: "user_id"},
-      as: "UserIdLove"
+      foreignKey: { field: "user_id" },
+      as: "UserIdLove",
     });
-  }
-  
+  };
+
   return user;
 };
