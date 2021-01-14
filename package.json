@@ -1,7 +1,7 @@
 {
   "name": "sosmet-be",
   "version": "1.0.0",
-  "description": "rps(rock paper scissors) game backend dev",
+  "description": "if we have machine time, we turn back to 2003 when zuck doesn't have any idea for facebook. maybe this be best for social media app.",
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
@@ -13,14 +13,12 @@
     "url": "git+https://gitlab.com/fsw-wave-2/sosmet-be.git"
   },
   "keywords": [
-    "game",
-    "rock",
-    "paper",
-    "scissors",
+    "sosmed",
+    "social media app",
     "nodejs",
     "postgresql"
   ],
-  "author": "RPS Team Wave 2",
+  "author": "FSW Wave 2 - By Binar Academy",
   "license": "MIT",
   "bugs": {
     "url": "https://gitlab.com/fsw-wave-2/sosmet-be/issues"
@@ -29,6 +27,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cloudinary": "^1.23.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
@@ -38,6 +37,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "morgan": "~1.9.1",
+    "multer": "^1.4.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "pg": "^8.5.1",
