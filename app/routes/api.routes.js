@@ -34,7 +34,7 @@ module.exports = (app) => {
     // update profile
     router.put("/user/:id", controllerUser.updateProfile);
     router.put(
-      "/user-profil-pict/:id",
+      "/avatar/:id",
       upload.single("image"),
       controllerUser.uploadProfilePict
     );

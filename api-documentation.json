@@ -55,7 +55,7 @@
           }
         }
       }
-    },    
+    },
     "/all-profiles": {
       "get": {
         "summary": "Get Users Profile",
@@ -159,17 +159,46 @@
         }
       }
     },
+    "/avatar/{user_id}": {
+      "put": {
+        "summary": "Upload Avatar",
+        "tags": ["User"],
+        "operationId": "UploadAvatar",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Upload File",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
     "/change_password/{user_id}": {
       "put": {
         "summary": "Change Password",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "ChangePassword",
         "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "Authorization",
@@ -287,7 +316,7 @@
           }
         }
       }
-    }    
+    }
   },
   "definitions": {
     "UserRegisterRequest": {
@@ -337,8 +366,7 @@
         "lastname": "Lewandowski",
         "birthdate": "1988-08-21",
         "gender": "Male",
-        "address": "Polish",
-        "avatar": "https://upload.wikimedia.org/wikipedia/commons/c/c2/JAP-POL_%286%29_%28cropped%29_%28cropped%29.jpg"
+        "address": "Polish"
       },
       "type": "object",
       "properties": {
@@ -390,7 +418,7 @@
         }
       },
       "required": ["user_id", "content"]
-    },    
+    },
     "ChangePasswordRequest": {
       "title": "ChangePasswordRequest",
       "example": {
