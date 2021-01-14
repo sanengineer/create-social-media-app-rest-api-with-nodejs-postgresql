@@ -80,7 +80,11 @@ module.exports = {
           include: [
               {
                   model: User,
-                  attributes: { include:['user_id','username', 'firstname', 'lastname', 'avatar'] }
+                  attributes: {
+                      include:[
+                        'user_id','birthdate','email', 'password', 'gender', 'address', 'createdAt', 'updatedAt'
+                        ]
+                    }
               }
           ],
       })
