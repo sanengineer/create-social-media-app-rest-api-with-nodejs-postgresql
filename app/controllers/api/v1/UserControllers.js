@@ -208,10 +208,10 @@ module.exports = {
 
       //
       //debugging
-      // console.log(
-      //   "\navatar_link:" + pictprof.avatar + "\n",
-      //   "\ncloudinary_id:" + pictprof.cloudinary_id + "\n"
-      // );
+      console.log(
+        "\navatar_link:" + pictprof.avatar + "\n",
+        "\ncloudinary_id:" + pictprof.cloudinary_id + "\n"
+      );
 
       await User.update(
         {

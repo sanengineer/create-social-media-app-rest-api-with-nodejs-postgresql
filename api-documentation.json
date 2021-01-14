@@ -179,7 +179,7 @@
             "type": "integer"
           },
           {
-            "name": "Upload File",
+            "name": "image",
             "in": "formData",
             "type": "file",
             "required": true
