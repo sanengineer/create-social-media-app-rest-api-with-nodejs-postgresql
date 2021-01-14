@@ -232,7 +232,7 @@
         "security": []
       }
     },
-    "/new-posts": {
+    "/new-post": {
       "post": {
         "summary": "Create Post",
         "tags": ["Post"],
@@ -269,7 +269,7 @@
         "operationId": "GetDetailPostByPostId",
         "parameters": [
           {
-            "name": "pos_id",
+            "name": "post_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -322,9 +322,9 @@
     "UserRegisterRequest": {
       "title": "UserRegisterRequest",
       "example": {
-        "username": "lewandowski",
-        "email": "lewandowski@yahoo.id",
-        "password": "mantandortmund"
+        "username": "akudicoba",
+        "email": "cobaja@bisa.kan",
+        "password": "janganlihat"
       },
       "type": "object",
       "properties": {
@@ -343,8 +343,8 @@
     "UserLoginRequest": {
       "title": "UserLoginRequest",
       "example": {
-        "email": "lewandowski@yahoo.id",
-        "password": "mantandortmund"
+        "email": "cobaja@bisa.kan",
+        "password": "janganlihat"
       },
       "type": "object",
       "properties": {
@@ -361,7 +361,7 @@
       "title": "UpdateProfileRequest",
       "example": {
         "username": "lewandowski",
-        "email": "lewandowski@yahuud.id",
+        "email": "cobaja@bisa.kan",
         "firstname": "Robert",
         "lastname": "Lewandowski",
         "birthdate": "1988-08-21",
@@ -401,9 +401,9 @@
     "CreatePostRequest": {
       "title": "CreatePostRequest",
       "example": {
-        "user_id": "23",
-        "content": "1",
-        "image": "215"
+        "user_id": "2",
+        "content": "Rails API to generate a GIF for every HTTP status code and Vanilla JS frontend | Rails backend",
+        "image": "https://i.pinimg.com/564x/ed/a6/d5/eda6d565f044a889f2630db44e471d48.jpg"
       },
       "type": "object",
       "properties": {
