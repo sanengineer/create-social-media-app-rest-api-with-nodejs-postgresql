@@ -2,6 +2,7 @@ const db = require("../../../models");
 const Post = db.post;
 const User = db.user;
 const sequelize = db.Sequelize;
+const cloudinary = require("../../../utils/cloudinary");
 
 module.exports = {
   // fetch all post
@@ -109,35 +110,43 @@ module.exports = {
   },
 
   // create Post 
-  create: (req,res) => {
-      if (!req.body.content) {
-          res.status(400).send({
-              message: "Content Post content cannot be empty"
-          })
-          return
-      }
-
-      // new Post 
-      const new_post = {
-        user_id: req.body.user_id,
-        content: req.body.content,
-        image: req.body.image
-      }
-
-      // save new Post  to database
-      Post.create(new_post)
-      .then(
-          res.status(200).send({
-              status: "success",
-              message: "Post successfully created"
-          })
-      )
-      .catch(err => {
-          res.status(500).send({
-              message:
-                  err.message || "Some error occured while creating the Post"
-          })
-      })
+  create: async (req,res) => {
+    try{
+        if (!req.body.content) {
+            res.status(400).send({
+                message: "Content Post content cannot be empty"
+            })
+            return
+        }
+    
+        //   upload to cloudinary
+        const post_image = await cloudinary.uploader.upload(req.file.path);
+        console.log("cloudinary_id:"+post_image);
+        // new Post 
+        const new_post = {
+            user_id: req.body.user_id,
+            content: req.body.content,
+            image: post_image.secure_url,
+            cloudinary_id: post_image.public_id,
+        }
+    
+        // save new Post  to database
+        await Post.create(new_post)
+        .then(
+            res.status(200).send({
+                status: "success",
+                message: "Post successfully created"
+            })
+        )
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occured while creating the Post"
+            })
+        })
+    }catch(err){
+        console.log(`TEST ERROT UPLOAD MEDIA IMAGE: ${err}`);
+    }  
   },
 
 // // update Post 

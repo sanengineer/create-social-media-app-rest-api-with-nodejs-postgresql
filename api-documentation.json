@@ -237,6 +237,7 @@
         "summary": "Create Post",
         "tags": ["Post"],
         "operationId": "CreatePost",
+        "consumes": ["multipart/form-data"],
         "parameters": [
           {
             "name": "Authorization",
@@ -253,6 +254,12 @@
             "schema": {
               "$ref": "#/definitions/CreatePostRequest"
             }
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file",
+            "required": false
           }
         ],
         "responses": {
