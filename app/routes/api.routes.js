@@ -39,7 +39,10 @@ module.exports = (app) => {
       controllerUser.uploadProfilePict
     );
     // create new post
-    router.post("/new-post", controllerPost.create);
+    router.post(
+      "/new-post",
+      upload.single("image"),
+      controllerPost.create);
   });
 
   const listRoutes = router.init();
