@@ -1,5 +1,8 @@
 const { decode } = require("jsonwebtoken");
-const { verifyJwt } = require("../config/jwt");
+// const { verifyJwt } = require("../config/jwt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const secret = process.env.SECRET;
 
 const passport = require("../lib/passport");
 
@@ -42,6 +45,7 @@ function verifyToken(req, res, next) {
   var token = getToken(req.headers);
 
   const decoded = decode(token);
+  console.log(`ini adalah decode ${token}`);
 
   const reqBodyUserId = req.body.user_id;
   const reqParamsUserId = req.params.id;
@@ -61,8 +65,20 @@ function verifyToken(req, res, next) {
     (token && reqBodyUserId == decoded.id) ||
     (token && reqParamsUserId == decoded.id)
   ) {
-    verifyJwt(token);
-    next();
+    // verifyJwt(token);
+    // next();
+    jwt.verify(token, secret, (err, decode) => {
+      if(err){
+          return res.status(500).send({
+              auth: false,
+              message: "Error",
+              errors: err
+          });
+      }
+      console.log("ini adalah decode.id", decode.user_id)
+      req.userId = decode.user_id;
+      next();
+    });
   } else {
     res.status(403).send({
       success: false,

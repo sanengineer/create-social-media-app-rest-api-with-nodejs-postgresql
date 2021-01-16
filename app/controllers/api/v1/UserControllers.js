@@ -165,6 +165,37 @@ module.exports = {
       });
   },
 
+  getMyProfile: (req, res) => {
+    // const userId = reqBodyUserId;
+    const id = req.params.id;
+    console.log(req.userId);
+    // res.send({
+    //   data : "ok",
+    //   userId: req.userId
+    // })
+
+    User.findOne({
+      where: { user_id: req.userId },
+      attributes: {
+        exclude: ["password"],
+      },
+    })
+      .then((data) => {
+        if (data != null) {
+          res.status(200).send(data);
+        } else {
+          res.status(200).send({
+            message: `profile id=${id} unavailable`,
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || `no user profile id=${id}`,
+        });
+      });
+  },
+
   //update profile user
   updateProfile: (req, res) => {
     const { id } = req.params;

@@ -14,6 +14,7 @@ const verifyJwt = (token) => {
 
   // debugging
   // console.log("\ntoken:\n", token, "\n\nsecret:\n", secret, "\n");
+
 };
 
 module.exports = {
