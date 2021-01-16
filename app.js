@@ -6,7 +6,6 @@ var cors = require("cors");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var swaggerUI = require("swagger-ui-express");
-const db = require('./app/models');
 
 var app = express();
 
@@ -19,13 +18,13 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 // swagger api documentation
-var swaggerFile = require("./api-documentation.json");
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
+// var swaggerFile = require("./api-documentation.json");
+// app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 // db.sequelize.sync();
 
 // swagger api local documentation
-// var swaggerFileLocal = require("./api-local-documentation.json");
-// app.use("/api-local-docs", swaggerUI.serve, swaggerUI.setup(swaggerFileLocal));
+var swaggerFileLocal = require("./api-local-documentation.json");
+app.use("/api-local-docs", swaggerUI.serve, swaggerUI.setup(swaggerFileLocal));
 
 // router
 var indexRouter = require("./app/routes/index.routes");

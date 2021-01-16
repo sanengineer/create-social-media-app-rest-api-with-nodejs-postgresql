@@ -139,32 +139,6 @@ module.exports = {
       });
   },
 
-  // show detail private profile
-  getProfilePrivate: (req, res) => {
-    const id = req.params.id;
-
-    User.findOne({
-      where: { user_id: id },
-      attributes: {
-        exclude: ["password"],
-      },
-    })
-      .then((data) => {
-        if (data != null) {
-          res.status(200).send(data);
-        } else {
-          res.status(200).send({
-            message: `profile id=${id} unavailable`,
-          });
-        }
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: err.message || `no user profile id=${id}`,
-        });
-      });
-  },
-
   getMyProfile: (req, res) => {
     // const userId = reqBodyUserId;
     const id = req.params.id;

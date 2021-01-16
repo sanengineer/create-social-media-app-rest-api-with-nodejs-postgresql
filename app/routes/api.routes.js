@@ -41,8 +41,6 @@ module.exports = (app) => {
    *   Route with middleware
    */
   router.group([middlewares.verifyToken], (router) => {
-    // show detail private profile
-    router.get("/user/:id", controllerUser.getProfilePrivate);
     // showing my profile
     router.get("/user/profile/me", controllerUser.getMyProfile);
     // update profile
