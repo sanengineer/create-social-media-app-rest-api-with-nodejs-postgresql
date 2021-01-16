@@ -29,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
       field: "user_id",
     },
     content: DataTypes.TEXT,
-    image: DataTypes.STRING
+    image: DataTypes.STRING,
+    cloudinary_id: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'post',
