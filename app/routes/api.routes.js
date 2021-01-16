@@ -3,10 +3,10 @@ const router = new Router();
 const controllerUser = require("../controllers/api/v1/UserControllers");
 const controllerPost = require("../controllers/api/v1/PostControllers");
 const controllerComment = require("../controllers/api/v1/CommentControllers");
+const controllerLove = require("../controllers/api/v1/LoveControllers");
 // middleware
 const middlewares = require("../middlewares/middlewares");
 const upload = require("../utils/multer");
-const { route } = require("./index.routes");
 
 module.exports = (app) => {
   /**
@@ -33,6 +33,10 @@ module.exports = (app) => {
   router.get("/comment/:id", controllerComment.show);
   router.get("/comments/:id", controllerComment.getCommentByUser);
 
+  // Love route
+  router.get("/total-Love/:post_id", controllerLove.totalLove);
+  router.get("/love-this-post/:post_id", controllerLove.loveThisPost);
+
   /**
    *   Route with middleware
    */
@@ -53,6 +57,8 @@ module.exports = (app) => {
       controllerPost.create);
     // route new comment
     router.post("/comment-post", controllerComment.create);
+    // route new love post
+    router.post("/love-post", controllerLove.lovedPost);
   });
 
   const listRoutes = router.init();

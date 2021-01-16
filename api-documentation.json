@@ -408,6 +408,78 @@
           }
         }
       }
+    },
+    "/love-post": {
+      "post": {
+        "summary": "Love Post",
+        "tags": ["Love"],
+        "operationId": "CreateCommentPost",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateLovePostRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/total-love/{post_id}": {
+      "get": {
+        "summary": "Count Total Love from all user for this Post",
+        "tags": ["Love"],
+        "operationId": "TotalLovePerPost",
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/love-this-post/{post_id}": {
+      "get": {
+        "summary": "List All User Loved this Post",
+        "tags": ["Love"],
+        "operationId": "LiasAllUserLovedThisPost",
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -548,6 +620,23 @@
         }
       },
       "required": ["post_id","user_id", "content"]
+    },
+    "CreateLovePostRequest": {
+      "title": "CreateLovePostRequest",
+      "example": {
+        "post_id": "5",
+        "user_id": "2"
+      },
+      "type": "object",
+      "properties": {
+        "post_id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      },
+      "required": ["post_id","user_id"]
     }
   },
   "tags": [
@@ -559,6 +648,9 @@
     },
     {
       "name": "Comment"
+    },
+    {
+      "name": "Love"
     }
   ]
 }
