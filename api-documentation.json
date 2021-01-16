@@ -103,9 +103,9 @@
         }
       }
     },
-    "/profile/me": {
+    "/user/profile/me": {
       "get": {
-        "summary": "Get User Profile Public",
+        "summary": "Get My Profile",
         "tags": [
           "User"
         ],
@@ -117,73 +117,6 @@
             "required": true,
             "type": "string",
             "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success"
-          }
-        }
-      }
-    },
-    "/user/{user_id}": {
-      "get": {
-        "summary": "Get User Private Profile",
-        "tags": [
-          "User"
-        ],
-        "operationId": "GetUserProfilePrivate",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success"
-          }
-        }
-      },
-      "put": {
-        "summary": "Update Profile",
-        "tags": [
-          "User"
-        ],
-        "operationId": "UpdateProfile",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "description": ""
-          },
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/UpdateProfileRequest"
-            }
           }
         ],
         "responses": {
