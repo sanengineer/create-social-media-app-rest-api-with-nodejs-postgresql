@@ -323,6 +323,91 @@
           }
         }
       }
+    },
+    "/comment-post": {
+      "post": {
+        "summary": "Create Comment Post",
+        "tags": ["Comment"],
+        "operationId": "CreateCommentPost",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateCommentPostRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/comment/{comment_id}": {
+      "get": {
+        "summary": "Get Detail Comment Post By Comment ID",
+        "tags": ["Comment"],
+        "operationId": "GetDetailCommentPostByCommentId",
+        "parameters": [
+          {
+            "name": "comment_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/comments/{post_id}": {
+      "get": {
+        "summary": "Get All Post Comment By Post ID",
+        "tags": ["Comment"],
+        "operationId": "GetAllPostCommentByPostID",
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/comments": {
+      "get": {
+        "summary": "Get All Post Comment",
+        "tags": ["Comment"],
+        "operationId": "GetAllPostComments",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -442,6 +527,27 @@
         }
       },
       "required": ["password", "confirm_password"]
+    },
+    "CreateCommentPostRequest": {
+      "title": "CreateCommentPostRequest",
+      "example": {
+        "post_id": "5",
+        "user_id": "2",
+        "content": "Ini isi komentar untuk postnya"
+      },
+      "type": "object",
+      "properties": {
+        "post_id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": ["post_id","user_id", "content"]
     }
   },
   "tags": [
@@ -450,6 +556,9 @@
     },
     {
       "name": "Post"
+    },
+    {
+      "name": "Comment"
     }
   ]
 }
