@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   love.init({
+    love_id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     post_id: {
       type: DataTypes.INTEGER,
       references: {
