@@ -7,22 +7,14 @@
   },
   "host": "sosmetend.herokuapp.com",
   "basePath": "/api/v1",
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/register": {
       "post": {
         "summary": "User Resgister",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "UserResgister",
         "parameters": [
           {
@@ -44,9 +36,7 @@
     "/login": {
       "post": {
         "summary": "User Login",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "UserLogin",
         "parameters": [
           {
@@ -69,9 +59,7 @@
     "/all-profiles": {
       "get": {
         "summary": "Get Users Profile",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "GetAllUsersProfile",
         "parameters": [],
         "responses": {
@@ -84,9 +72,7 @@
     "/profile/{user_id}": {
       "get": {
         "summary": "Get User Profile Public",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "GetingMyProfile",
         "parameters": [
           {
@@ -106,9 +92,7 @@
     "/user/profile/me": {
       "get": {
         "summary": "Get My Profile",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "GetUserProfilePublic",
         "parameters": [
           {
@@ -129,13 +113,9 @@
     "/avatar/{user_id}": {
       "put": {
         "summary": "Upload Avatar",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "UploadAvatar",
-        "consumes": [
-          "multipart/form-data"
-        ],
+        "consumes": ["multipart/form-data"],
         "parameters": [
           {
             "name": "Authorization",
@@ -166,14 +146,10 @@
     "/change_password/{user_id}": {
       "put": {
         "summary": "Change Password",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "operationId": "ChangePassword",
         "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "Authorization",
@@ -207,16 +183,45 @@
         "security": []
       }
     },
-    "/new-post": {
+    "/new-post-image/{user_id}": {
+      "post": {
+        "summary": "Create Post Image",
+        "tags": ["Post"],
+        "operationId": "CreatePostImage",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/new-post-text": {
       "post": {
         "summary": "Create Post",
-        "tags": [
-          "Post"
-        ],
+        "tags": ["Post"],
         "operationId": "CreatePost",
-        "consumes": [
-          "multipart/form-data"
-        ],
         "parameters": [
           {
             "name": "Authorization",
@@ -233,12 +238,6 @@
             "schema": {
               "$ref": "#/definitions/CreatePostRequest"
             }
-          },
-          {
-            "name": "image",
-            "in": "formData",
-            "type": "file",
-            "required": false
           }
         ],
         "responses": {
@@ -251,9 +250,7 @@
     "/post/{post_id}": {
       "get": {
         "summary": "Get Detail Post By Post ID",
-        "tags": [
-          "Post"
-        ],
+        "tags": ["Post"],
         "operationId": "GetDetailPostByPostId",
         "parameters": [
           {
@@ -274,9 +271,7 @@
     "/posts/{post_id}": {
       "get": {
         "summary": "Get All Post By User ID",
-        "tags": [
-          "Post"
-        ],
+        "tags": ["Post"],
         "operationId": "GetAllPostByUserID",
         "parameters": [
           {
@@ -297,9 +292,7 @@
     "/posts": {
       "get": {
         "summary": "Get All Posts",
-        "tags": [
-          "Post"
-        ],
+        "tags": ["Post"],
         "operationId": "GetAllPosts",
         "parameters": [],
         "responses": {
@@ -312,9 +305,7 @@
     "/comment-post": {
       "post": {
         "summary": "Create Comment Post",
-        "tags": [
-          "Comment"
-        ],
+        "tags": ["Comment"],
         "operationId": "CreateCommentPost",
         "parameters": [
           {
@@ -344,9 +335,7 @@
     "/comment/{comment_id}": {
       "get": {
         "summary": "Get Detail Comment Post By Comment ID",
-        "tags": [
-          "Comment"
-        ],
+        "tags": ["Comment"],
         "operationId": "GetDetailCommentPostByCommentId",
         "parameters": [
           {
@@ -367,9 +356,7 @@
     "/comments/{post_id}": {
       "get": {
         "summary": "Get All Post Comment By Post ID",
-        "tags": [
-          "Comment"
-        ],
+        "tags": ["Comment"],
         "operationId": "GetAllPostCommentByPostID",
         "parameters": [
           {
@@ -390,9 +377,7 @@
     "/comments": {
       "get": {
         "summary": "Get All Post Comment",
-        "tags": [
-          "Comment"
-        ],
+        "tags": ["Comment"],
         "operationId": "GetAllPostComments",
         "parameters": [],
         "responses": {
@@ -405,9 +390,7 @@
     "/love-post": {
       "post": {
         "summary": "Love Post",
-        "tags": [
-          "Love"
-        ],
+        "tags": ["Love"],
         "operationId": "CreateLikePost",
         "parameters": [
           {
@@ -437,9 +420,7 @@
     "/total-love/{post_id}": {
       "get": {
         "summary": "Count Total Love from all user for this Post",
-        "tags": [
-          "Love"
-        ],
+        "tags": ["Love"],
         "operationId": "TotalLovePerPost",
         "parameters": [
           {
@@ -460,9 +441,7 @@
     "/love-this-post/{post_id}": {
       "get": {
         "summary": "List All User Loved this Post",
-        "tags": [
-          "Love"
-        ],
+        "tags": ["Love"],
         "operationId": "LiasAllUserLovedThisPost",
         "parameters": [
           {
@@ -501,11 +480,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "username",
-        "email",
-        "password"
-      ]
+      "required": ["username", "email", "password"]
     },
     "UserLoginRequest": {
       "title": "UserLoginRequest",
@@ -522,10 +497,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "email",
-        "password"
-      ]
+      "required": ["email", "password"]
     },
     "UpdateProfileRequest": {
       "title": "UpdateProfileRequest",
@@ -587,10 +559,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "user_id",
-        "content"
-      ]
+      "required": ["user_id", "content"]
     },
     "ChangePasswordRequest": {
       "title": "ChangePasswordRequest",
@@ -607,10 +576,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "password",
-        "confirm_password"
-      ]
+      "required": ["password", "confirm_password"]
     },
     "CreateCommentPostRequest": {
       "title": "CreateCommentPostRequest",
@@ -631,11 +597,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "post_id",
-        "user_id",
-        "content"
-      ]
+      "required": ["post_id", "user_id", "content"]
     },
     "CreateLovePostRequest": {
       "title": "CreateLovePostRequest",
@@ -652,10 +614,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "post_id",
-        "user_id"
-      ]
+      "required": ["post_id", "user_id"]
     }
   },
   "tags": [
