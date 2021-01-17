@@ -110,6 +110,42 @@
         }
       }
     },
+    "/user/{user_id}": {
+      "put": {
+        "summary": "Update Profile",
+        "tags": ["User"],
+        "operationId": "UpdateProfile",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateProfileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
     "/avatar/{user_id}": {
       "put": {
         "summary": "Upload Avatar",
