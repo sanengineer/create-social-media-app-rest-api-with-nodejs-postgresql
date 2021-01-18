@@ -4,6 +4,7 @@ const controllerUser = require("../controllers/api/v1/UserControllers");
 const controllerPost = require("../controllers/api/v1/PostControllers");
 const controllerComment = require("../controllers/api/v1/CommentControllers");
 const controllerLove = require("../controllers/api/v1/LoveControllers");
+const controllerFollow = require("../controllers/api/v1/FollowControllers");
 // middleware
 const middlewares = require("../middlewares/middlewares");
 const upload = require("../utils/multer");
@@ -59,6 +60,10 @@ module.exports = (app) => {
     router.post("/comment-post", controllerComment.create);
     // route new love post
     router.post("/love-post", controllerLove.lovedPost);
+    // route following user
+    router.post("/following", controllerFollow.following);
+    // route unfollowing user
+    router.post("/unfollowing", controllerFollow.unfollowing);
   });
 
   const listRoutes = router.init();
