@@ -542,6 +542,7 @@
         "email": "cobaja@bisa.kan",
         "firstname": "Robert",
         "lastname": "Lewandowski",
+        "bio": "nyong ki pemain bal balang hlo gggaess!",
         "birthdate": "1988-08-21",
         "gender": "Male",
         "address": "Polish"
@@ -570,6 +571,7 @@
       "required": [
         "firstanme",
         "lastname",
+        "bio",
         "birthdate",
         "gender",
         "address",
