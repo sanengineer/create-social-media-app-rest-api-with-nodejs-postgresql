@@ -50,7 +50,6 @@ module.exports = (sequelize, DataTypes) => {
       password: DataTypes.STRING,
       firstname: DataTypes.STRING,
       lastname: DataTypes.STRING,
-      bio: DataTypes.STRING,
       birthdate: {
         type: DataTypes.DATEONLY,
         get: function () {
