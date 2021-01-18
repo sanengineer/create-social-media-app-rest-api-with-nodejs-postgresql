@@ -43,13 +43,14 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         unique: true,
-        validate:{
-          isEmail: true
-        }
+        validate: {
+          isEmail: true,
+        },
       },
       password: DataTypes.STRING,
       firstname: DataTypes.STRING,
       lastname: DataTypes.STRING,
+      bio: DataTypes.STRING,
       birthdate: {
         type: DataTypes.DATEONLY,
         get: function () {
