@@ -12,7 +12,6 @@ module.exports = {
       return Promise.all([
         queryInterface.addColumn("users", "bio", {
           type: Sequelize.STRING,
-          allowNull: true,
         }),
       ]);
     });
