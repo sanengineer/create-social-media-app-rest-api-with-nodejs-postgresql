@@ -24,7 +24,7 @@ module.exports = (app) => {
   // show detail profile
   router.get("/public-user/:id", controllerUser.getProfile);
 
-  // Post route 
+  // Post route
   router.get("/posts", controllerPost.index);
   router.get("/post/:id", controllerPost.show);
   router.get("/posts/:id", controllerPost.getPostByUser);
@@ -53,9 +53,11 @@ module.exports = (app) => {
     );
     // create new post
     router.post(
-      "/new-post",
+      "/new-post-image/:id",
       upload.single("image"),
-      controllerPost.create);
+      controllerPost.createPostImage
+    );
+    router.post("/new-post-text", controllerPost.createPostText);
     // route new comment
     router.post("/comment-post", controllerComment.create);
     // route new love post
