@@ -22,7 +22,7 @@ module.exports = {
                 attributes: ['content']
             }
         ],
-        order: [['content', 'ASC']]
+        order: [["createdAt", "DESC"]]
     })
     .then(data => {
         res.status(200).send({
@@ -50,7 +50,7 @@ module.exports = {
                 attributes: ['username', 'avatar']
             }
         ],
-        order: [['content', 'ASC']]
+        order: [["createdAt", "DESC"]]
     })
     .then(data => {
         if (data.length !== 0) {
