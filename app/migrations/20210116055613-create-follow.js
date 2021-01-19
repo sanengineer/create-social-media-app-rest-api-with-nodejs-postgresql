@@ -2,13 +2,10 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('follows', {
-      id: {
+      follow_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      follow_id: {
         type: Sequelize.INTEGER
       },
       following_id: {

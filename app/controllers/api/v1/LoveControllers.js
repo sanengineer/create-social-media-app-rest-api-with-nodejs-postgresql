@@ -1,3 +1,4 @@
+const { Sequelize } = require("../../../models");
 const db = require("../../../models");
 const Post = db.post;
 const User = db.user;
@@ -73,9 +74,13 @@ module.exports = {
   // create Love
   lovedPost: (req, res) => {
     try{
+        postId = req.body.post_id;
         userId = req.body.user_id;
         Love.findAndCountAll({
-            where: {user_id: userId}
+            where: Sequelize.and(
+                {user_id: userId},
+                {post_id: postId},
+            )
         })
         .then(data => {
             console.log(data);

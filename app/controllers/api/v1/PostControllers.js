@@ -31,7 +31,7 @@ module.exports = {
           },
         },
       ],
-      order: [["content", "ASC"]],
+      order: [["createdAt", "DESC"]],
     })
       .then((data) => {
         res.status(200).send({
@@ -69,7 +69,7 @@ module.exports = {
           },
         },
       ],
-      order: [["content", "ASC"]],
+      order: [["createdAt", "DESC"]],
     })
       .then((data) => {
         if (data.length !== 0) {
