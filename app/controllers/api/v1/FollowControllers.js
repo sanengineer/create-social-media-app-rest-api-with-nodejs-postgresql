@@ -1,8 +1,7 @@
 const { Sequelize } = require("../../../models");
 const db = require("../../../models");
-const Post = db.post;
 const User = db.user;
-const Love = db.love;
+const Follow = db.follow;
 const sequelize = db.Sequelize;
 
 module.exports = {
@@ -72,47 +71,61 @@ module.exports = {
   },
 
   // create Love
-  lovedPost: (req, res) => {
-    try{
-        postId = req.body.post_id;
-        userId = req.body.user_id;
-        Love.findAndCountAll({
+    following: (req, res) => {
+        try{
+            following_id = req.body.following_id;
+            follower_id = req.body.follower_id;
+            // new Love post
+            const new_follower = {
+                following_id: following_id,
+                follower_id: follower_id,
+            }
+            console.log(new_follower);
+            // save new Love to database
+            Love.create(new_follower)
+            .then(
+                res.status(200).send({
+                    status: "success",
+                    message: `Following user with ${following_id} successfully !`
+                })
+            )
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occured while following user"
+                })
+            })
+            
+        }catch(err){
+            console.log('An error you know ? :D');
+        }  
+    },
+    
+    // unfollowing user 
+    unfollowing : (req, res) => {
+        following_id = req.body.following_id;
+        follower_id = req.body.follower_id;
+
+        Post.destroy({
             where: Sequelize.and(
-                {user_id: userId},
-                {post_id: postId},
+                {following_id: req.body.following_id},
+                {follower_id: req.body.follower_id}
             )
         })
-        .then(data => {
-            console.log(data);
-            if (data.count === 0) {
-                // new Love post
-                const new_love = {
-                    post_id: req.body.post_id,
-                    user_id: userId,
-                }
-                console.log(new_love);
-                // save new Love to database
-                Love.create(new_love)
-                .then(
-                    res.status(200).send({
-                        status: "success",
-                        message: "Liked successful posts"
-                    })
-                )
-                .catch(err => {
-                    res.status(500).send({
-                        message: err.message || "Some error occured while liked posts"
-                    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Unfollow user successfully"
                 })
             } else {
-                res.status(200).send({
-                  status: "Error",
-                  message: `User with ${userId} already liked this`
-                })  
+                res.send({
+                    message: `Cannot unfollow user `
+                })
             }
         })
-    }catch(err){
-        console.log('An error you know ? :D');
-    }  
-  },
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete Post with id="+id                
+            })
+        })
+    }
 };

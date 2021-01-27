@@ -44,8 +44,9 @@ module.exports = (sequelize, DataTypes) => {
       as: "PostIdCom"
     });
     post.hasMany(models.love, {
-      foreignKey: {field:"post_id"}, 
-      as: "PostIdLove"
+      // foreignKey: {field:"post_id"}, 
+      // as: "PostIdLove"
+      foreignKey: 'post_id', sourceKey: 'post_id'
     });
   };
   return post;
