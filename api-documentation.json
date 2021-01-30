@@ -5,9 +5,9 @@
     "title": "Sosmet - Backend API Documentation",
     "contact": {}
   },
-  "host": "localhost:8000",
+  "host": "sosmetend.herokuapp.com",
   "basePath": "/api/v1",
-  "schemes": ["http"],
+  "schemes": ["https"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
