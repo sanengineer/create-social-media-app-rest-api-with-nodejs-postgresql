@@ -25,8 +25,9 @@ production:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
+    - gem install heroku
     - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
-    - heroku --provider=heroku run rails db:migrate --exit-code --app $HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
+    - heroku run rails db:migrate --exit-code --app $HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
 
   only:
     - master
