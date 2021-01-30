@@ -16,7 +16,7 @@ proses compile:
   stage: build
   script:
     - npm install
-    - sequelize db:migrate --app $HEROKU_APP_NAME
+    - sequelize db:migrate $DATABASE_URL
 
 production:
   type: deploy
