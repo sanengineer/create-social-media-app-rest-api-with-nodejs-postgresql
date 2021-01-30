@@ -156,6 +156,7 @@ module.exports = {
 
       // new Post
       const new_post_image = {
+        user_id: id,
         image: post_image.secure_url,
         cloudinary_id: post_image.public_id,
       };
@@ -184,6 +185,7 @@ module.exports = {
     const new_post_text = {
       user_id: req.body.user_id,
       content: req.body.content,
+      image: req.body.image,
     };
 
     console.log("TEST:" + new_post_text);

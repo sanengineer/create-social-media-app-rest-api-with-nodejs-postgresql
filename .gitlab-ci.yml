@@ -1,6 +1,5 @@
 image: node:12.18.3
 
-
 services:
   - postgres:latest
 
@@ -10,12 +9,12 @@ variables:
 stages:
   - build
   - production
-  
+
 proses compile:
-  variables: 
+  variables:
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
   stage: build
-  script: 
+  script:
     - npm install
 
 production:
@@ -27,8 +26,8 @@ production:
     - apt-get install -y ruby-dev
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
+    - heroku run rails db:migrate --exit-code --app $HEROKU_PRODUCTION_APP
 
-  
   only:
     - master
     - test-deploy

@@ -47,6 +47,7 @@ typings/
 
 # Optional REPL history
 .node_repl_history
+.gitlab-ci_example.yml
 
 # Output of 'npm pack'
 *.tgz

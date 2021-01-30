@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const moment = require("moment");
+
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -101,6 +102,18 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: { field: "user_id" },
       as: "UserIdLove",
     });
+    user.hasMany(models.storage_file, {
+      foreignKey: { field: "user_id" },
+      as: "user_id_storage_file",
+    });
+
+    // console.log(
+    //   "user:",
+    //   user.hasMany(models.storage_file, {
+    //     foreignKey: { field: "user_id" },
+    //     as: "user_id_storage_file",
+    //   })
+    // );
   };
 
   return user;

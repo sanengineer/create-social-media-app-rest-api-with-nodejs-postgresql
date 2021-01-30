@@ -5,9 +5,9 @@
     "title": "Sosmet - Backend API Documentation",
     "contact": {}
   },
-  "host": "sosmetend.herokuapp.com",
+  "host": "localhost:8000",
   "basePath": "/api/v1",
-  "schemes": ["https"],
+  "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
@@ -244,6 +244,192 @@
             "in": "formData",
             "type": "file",
             "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/upload-doc/{user_id}": {
+      "post": {
+        "summary": "Upload File",
+        "tags": ["Storage"],
+        "operationId": "UploadFile",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/upload-image/{user_id}": {
+      "post": {
+        "summary": "Upload Image",
+        "tags": ["Storage"],
+        "operationId": "UploadImage",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/upload-video/{user_id}": {
+      "post": {
+        "summary": "Upload Video",
+        "tags": ["Storage"],
+        "operationId": "UploadVideo",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "video",
+            "in": "formData",
+            "type": "file",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/storage-images/{user_id}": {
+      "get": {
+        "summary": "Fetch Image By User Id",
+        "tags": ["Storage"],
+        "operationId": "FetchImage",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/storage-videos/{user_id}": {
+      "get": {
+        "summary": "Fetch Videos By User Id",
+        "tags": ["Storage"],
+        "operationId": "FetchVideos",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/storage-docs/{user_id}": {
+      "get": {
+        "summary": "Fetch Docs By User Id",
+        "tags": ["Storage"],
+        "operationId": "FetchDocs",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -667,6 +853,9 @@
     },
     {
       "name": "Love"
+    },
+    {
+      "name": "Storage"
     }
   ]
 }

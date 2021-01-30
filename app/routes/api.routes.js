@@ -5,9 +5,12 @@ const controllerPost = require("../controllers/api/v1/PostControllers");
 const controllerComment = require("../controllers/api/v1/CommentControllers");
 const controllerLove = require("../controllers/api/v1/LoveControllers");
 const controllerFollow = require("../controllers/api/v1/FollowControllers");
+const controllerStorage = require("../controllers/api/v1/StorageControllers");
 // middleware
 const middlewares = require("../middlewares/middlewares");
 const upload = require("../utils/multer");
+const uploadFile = require("../utils/multer-file");
+const uploadVideo = require("../utils/multer-video");
 
 module.exports = (app) => {
   /**
@@ -66,6 +69,26 @@ module.exports = (app) => {
     router.post("/following", controllerFollow.following);
     // route unfollowing user
     router.post("/unfollowing", controllerFollow.unfollowing);
+
+    router.post(
+      "/upload-docs/:id",
+      uploadFile.single("file"),
+      controllerStorage.uploadDoc
+    );
+    router.post(
+      "/upload-video/:id",
+      uploadVideo.single("video"),
+      controllerStorage.uploadVideo
+    );
+    router.post(
+      "/upload-image/:id",
+      upload.single("image"),
+      controllerStorage.uploadImage
+    );
+
+    router.get("/storage-images/:id", controllerStorage.fetchImages);
+    router.get("/storage-videos/:id", controllerStorage.fetchVideos);
+    router.get("/storage-docs/:id", controllerStorage.fetchDocs);
   });
 
   const listRoutes = router.init();

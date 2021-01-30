@@ -4,8 +4,9 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.sequelize.transaction((t) => {
       return Promise.all([
-        queryInterface.addColumn("users", "bio", {
+        queryInterface.addColumn("storage_videos", "cloudinary_id", {
           type: Sequelize.STRING,
+          allowNull: true,
         }),
       ]);
     });
@@ -13,7 +14,9 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     return queryInterface.sequelize.transaction(() => {
-      return Promise.all([queryInterface.removeColumn("users", "bio")]);
+      return Promise.all([
+        queryInterface.removeColumn("storage_videos", "cloudinary_id"),
+      ]);
     });
   },
 };

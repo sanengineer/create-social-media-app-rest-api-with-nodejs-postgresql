@@ -47,6 +47,9 @@ db.user = require("./user")(sequelize, Sequelize);
 db.post = require("./post")(sequelize, Sequelize);
 db.comment = require("./comment")(sequelize, Sequelize);
 db.love = require("./love")(sequelize, Sequelize);
+db.storagefile = require("./storage-file")(sequelize, Sequelize);
+db.storageimage = require("./storage-image")(sequelize, Sequelize);
+db.storagevideo = require("./storage-video")(sequelize, Sequelize);
 
 db.post.belongsTo(db.user, {
   foreignKey: {
@@ -72,6 +75,24 @@ db.love.belongsTo(db.post, {
 });
 
 db.love.belongsTo(db.user, {
+  foreignKey: {
+    name: "user_id",
+  },
+});
+
+db.storagefile.belongsTo(db.user, {
+  foreignKey: {
+    name: "user_id",
+  },
+});
+
+db.storagevideo.belongsTo(db.user, {
+  foreignKey: {
+    name: "user_id",
+  },
+});
+
+db.storageimage.belongsTo(db.user, {
   foreignKey: {
     name: "user_id",
   },
