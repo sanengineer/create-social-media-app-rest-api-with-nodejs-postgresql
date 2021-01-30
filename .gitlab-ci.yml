@@ -26,7 +26,7 @@ production:
     - apt-get install -y ruby-dev
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
-    - run rails db:migrate --exit-code --app $HEROKU_APP_NAME
+    - sequelize db:migrate --exit-code --app $HEROKU_APP_NAME
 
   only:
     - master
