@@ -16,7 +16,6 @@ proses compile:
   stage: build
   script:
     - npm install
-    - sequelize db:migrate $DATABASE_URL
 
 production:
   type: deploy
@@ -26,7 +25,8 @@ production:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
-    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
+    - dpl heroku api --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
+    - heroku run rails db:migrate --exit-code --app $HEROKU_APP_PRODUCTION
 
   only:
     - master
